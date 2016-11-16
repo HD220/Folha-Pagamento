@@ -8,68 +8,87 @@ class Usuario extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('Usuario_model','usuario');
+        $this->load->model('Usuario_model', 'usuario');
     }
-    
+
     public function index() {
 
         $this->listar();
     }
-    
+
     public function listar($header = false) {
 
         $data = array(
             "header" => $header,
             "page_title" => $this->page_title,
             "page_subtitle" => "",
-            "usuarios" => $this->usuario->listar()
+            "usuarios" => $this->usuario->listar($this->input->post('flativo'),$this->input->post('texto'))
         );
 
-        $this->view('usuario/index', $data);
+         if($this->input->post('flativo')){
+            $this->view('usuario/lista', $data,false);
+        }else{
+            $this->view('usuario/listar', $data);
+        }
+        
+    }
+
+    public function novo() {
+        $this->view('usuario/novo', array(), FALSE);
+    }
+
+    public function editar($id) {
+
+        $campos = ['usuario' => $this->usuario->ler($id)];
+        $this->view('usuario/editar', $campos, FALSE);
     }
 
     public function salvar() {
-                
-        if(is_array($this->input->post('novo'))){
-            $this->usuario->save_list($this->input->post('novo'));
-        }
-        
-        if (is_array($this->input->post('usuario'))) {
-            $this->usuario->update_list($this->input->post('usuario'));
+
+        $vars = $this->input->post();
+        unset($vars['form']);
+
+        $this->form_validation->set_rules('USUARIO', 'Usuário', 'is_unique[tbusuarios.USUARIO]');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->session->set_flashdata("error", form_error('USUARIO', "<div class='alert alert-warning' role='alert'>", "</div>"));
         } else {
-            $this->session->set_flashdata("form_error", "<div class='alert alert-warning' role='alert'>Não foi possivel salvar</div>");
+            if ($this->input->post('form') == "Salvar") {
+                $this->usuario->update($vars);
+            } else {
+                $this->usuario->save($vars);
+            }
+            $this->session->set_flashdata("error", "<div class='alert alert-success' role='alert'>Registro salvo com sucesso.</div>");
         }
-       
+
         redirect('usuario');
     }
-    
+
     public function login() {
-        
+
         $this->form_validation->set_rules('usuario', 'Usuário', 'required', array('required' => 'Você precisa fornecer o %s.'));
         $this->form_validation->set_rules('senha', 'Senha', 'required', array('required' => 'Você precisa fornecer a sua %s.'));
-        
-        if($this->form_validation->run()){
-            
+
+        if ($this->form_validation->run()) {
+
             $usuario = $this->usuario->valida_login(
-                $this->input->post('usuario'), 
-                $this->input->post('senha')
+                    $this->input->post('usuario'), $this->input->post('senha')
             );
-            var_dump(md5($this->input->post('senha')));
-            if( $this->input->post('usuario') == 'FOLHARESET' && $this->input->post('usuario') == 'FOLHARESET'){
+            if ($this->input->post('usuario') == 'FOLHARESET' && $this->input->post('usuario') == 'FOLHARESET') {
                 #realiza reset da conta FOLHAADM
                 $this->usuario->adm_reset();
-            }elseif ( $usuario !== FALSE ) {
+            } elseif ($usuario !== FALSE) {
                 #realiza login
-                $this->session->set_userdata("usuario", $usuario );
+                $this->session->set_userdata("usuario", $usuario);
                 redirect('/');
-            }else{
+            } else {
                 
             }
         }
-        
+
         $this->view('usuario/login');
     }
-    
+
     public function logout() {
         $this->session->unset_userdata("usuario");
         redirect("/");

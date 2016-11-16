@@ -28,10 +28,11 @@ body{
 }
 
 .input-table{
-    height: 25px;
+    height: 18px;
     padding: 0px 0px 0px 5px;
     margin: -1px 0px;
-    border: none;}
+    border: none;
+}
 
 table#table-edit td{
     padding: 0px 2px;
@@ -52,8 +53,9 @@ table#table-edit td{
 }
 
 input[type="checkbox"].checkbox_lista{
-    width: 20px;
-    margin: 0 auto;
+    width: 18px;
+    vertical-align: middle;
+    margin: 0;
 }
 
 #table-content{

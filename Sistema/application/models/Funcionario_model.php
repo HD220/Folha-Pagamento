@@ -1,20 +1,11 @@
 <?php
 
-class Empresa_model extends CI_Model {
+class Funcionario_model extends CI_Model {
 
-    protected $table_name = "tbempresas";
+    protected $table_name = "tbfuncionarios";
 
-    public function listar($ativo='S',$texto = NULL) {
-        
-        if($ativo == 'S' || $ativo == NULL){
-            $this->db->where("FLATIVO",'S');
-        }
-        
-        if($texto){
-            $this->db->like("NOME",$texto);
-            $this->db->or_like("NOMECURTO",$texto);
-        }
-        
+    public function listar() {
+        $this->db->where("FLATIVO", 'S');
         $result = $this->db->get($this->table_name);
         return $result->result_array();
     }
@@ -36,8 +27,11 @@ class Empresa_model extends CI_Model {
     }
 
     public function save($campos = array()) {
-        
+        $count = 0;
+        $campos['FLATIVO'] = (isset($campos['FLATIVO'])) ? $campos['FLATIVO'] : 'N';
         $this->db->insert($this->table_name, $campos);
+        $count++;
+
         return $this->listar();
     }
 
@@ -70,13 +64,13 @@ class Empresa_model extends CI_Model {
         $this->db->select("ID,NOME");
         $this->db->where("FLATIVO", "S");
         $rows = $this->db->get($this->table_name)->result();
-        $empresas = array(
-            "0" => "Sem empresa"
+        $funcionarios = array(
+            "0" => "Sem funcionário"
         );
-        foreach ($rows as $empresa) {
-            $empresas[$empresa->ID] = $empresa->NOME;
+        foreach ($rows as $funcionario) {
+            $funcionarios[$funcionario->ID] = $funcionario->NOME;
         }
-        return $empresas;
+        return $funcionarios;
     }
 
 }

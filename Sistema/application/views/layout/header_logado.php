@@ -22,7 +22,7 @@
         <!-- Custom Fonts -->
         <link href="/assets/sb/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="/assets/js/jquery.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="/assets/js/bootstrap.min.js"></script>
 
@@ -43,20 +43,7 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Folhas</a></li>
-                        <li><a href="#">Horas</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                Financeiro <span class="fa fa-money"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/lancamento">Lançamentos</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="/tipo_lancamento">Tipos Lançamentos</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="/funcionario">Funcionários</a></li>
-                        <li><a href="/cargo">Cargos</a></li>
+                        <li><a href="#">Cargos</a></li>
                         <li><a href="/usuario">Usuários</a></li>
                         <li><a href="/empresa">Empresas</a></li>
                     </ul>
@@ -66,7 +53,7 @@
                                 Opções <span class="glyphicon glyphicon-cog"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="/configuracao">Configurações</a></li>
+                                <li><a href="#">Configurações</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="/usuario/logout">Logout</a></li>
                             </ul>

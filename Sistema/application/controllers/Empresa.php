@@ -1,10 +1,8 @@
 <?php
-
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Empresa extends MY_Controller {
 
-    public $page_title = "Empresa";
+    public $page_title = "Empresas";
 
     public function __construct() {
         parent::__construct();
@@ -12,34 +10,44 @@ class Empresa extends MY_Controller {
     }
     
     public function index() {
-
         $this->listar();
     }
     
-    public function listar($header = false) {
+    public function listar() {
 
         $data = array(
-            "header" => $header,
             "page_title" => $this->page_title,
             "page_subtitle" => "",
-            "dados" => $this->empresa->listar()
+            "dados" => $this->empresa->listar($this->input->post('flativo'),$this->input->post('texto'))
         );
-
-        $this->view('empresa/index', $data);
+        
+        if($this->input->post('flativo')){
+            $this->view('empresa/lista', $data,FALSE);
+        }else{
+            $this->view('empresa/listar', $data);
+        }
+    }
+    
+    public function novo() {
+        $this->view('empresa/novo',array(),FALSE);
+    }
+    
+    public function editar($id) {
+        $campos = ['empresa' => $this->empresa->ler($id)];
+        $this->view('empresa/editar',$campos,FALSE);
+        
     }
 
     public function salvar() {
-                
-        if(is_array($this->input->post('novo'))){
-            $this->empresa->save_list($this->input->post('novo'));
-        }
+        $var = $this->input->post();
+        unset($var['form']);
         
-        if (is_array($this->input->post('dados'))) {
-            $this->empresa->update_list($this->input->post('dados'));
-        } else {
-            $this->session->set_flashdata("form_error", "<div class='alert alert-warning' role='alert'>Não foi possivel salvar</div>");
+        if ($this->input->post('form') == "Salvar") {
+            $this->empresa->update($var);
+        }else {
+            $this->empresa->save($var);
         }
-       
+        $this->session->set_flashdata("error", "<div class='alert alert-success' role='alert'>Registro salvo com sucesso.</div>");
         redirect('empresa');
     }
     

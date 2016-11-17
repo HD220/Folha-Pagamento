@@ -43,7 +43,7 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Cargos</a></li>
+                        <li><a href="/cargo">Cargos</a></li>
                         <li><a href="/usuario">Usuários</a></li>
                         <li><a href="/empresa">Empresas</a></li>
                     </ul>

@@ -4,8 +4,11 @@ class Empresa_model extends CI_Model {
 
     protected $table_name = "tbempresas";
 
-    public function listar($ativo='S',$texto = NULL) {
+    public function listar($idempresa = NULL,$ativo='S',$texto = NULL) {
         
+        if($idempresa){
+            $this->db->where("IDEMPRESA",$idempresa);
+        }
         if($ativo == 'S' || $ativo == NULL){
             $this->db->where("FLATIVO",'S');
         }

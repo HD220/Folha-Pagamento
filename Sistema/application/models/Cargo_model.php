@@ -19,7 +19,8 @@ class Cargo_model extends CI_Model {
         
         if ($texto) {
             $this->db->group_start();
-            $this->db->like("c.NOME", $texto);
+            $this->db->or_like("e.NOME", $texto);
+            $this->db->or_like("c.NOME", $texto);
             $this->db->or_like("c.DESCRICAO", $texto);
             $this->db->group_end();
         }

@@ -9,6 +9,7 @@ class Usuario extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('Usuario_model', 'usuario');
+		$this->load->model('Empresa_model', 'empresa');
     }
 
     public function index() {
@@ -79,6 +80,8 @@ class Usuario extends MY_Controller {
                 $this->usuario->adm_reset();
             } elseif ($usuario !== FALSE) {
                 #realiza login
+				$empresa = $this->empresa->ler($this->input->post('IDEMPRESA'));
+				$this->session->set_userdata("empresa", $empresa);
                 $this->session->set_userdata("usuario", $usuario);
                 redirect('/');
             } else {
@@ -88,6 +91,12 @@ class Usuario extends MY_Controller {
 
         $this->view('usuario/login');
     }
+	
+	public function set_empresa(){
+		$empresa = $this->empresa->ler($this->input->post('IDEMPRESA'));
+		$this->session->set_userdata("empresa", $empresa);
+		redirect("/");
+	}
 
     public function logout() {
         $this->session->unset_userdata("usuario");

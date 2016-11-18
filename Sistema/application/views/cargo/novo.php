@@ -3,7 +3,7 @@
 <div class="form-group">
     <label class="col-sm-3 control-label">Empresa:</label>
     <div class="col-sm-9">
-        <?= form_dropdown('IDEMPRESA', $empresas, '0',['class' => 'form-control']) ?>
+        <p class="form-control-static" ><?= $this->session->userdata('empresa')['NMEMPRESA'] ?></p>
     </div>
 </div>
 <div class="form-group">

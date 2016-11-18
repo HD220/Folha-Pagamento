@@ -27,11 +27,6 @@
             <div class="row">
                 <div class="col-xs-12" style="margin-top: 15px">
                     <input type="text" id="text_search" onchange="pesquisar('cargo', 'ativo_search')" class="form-control input-sm pull-left" style="margin-left: 5px;max-width: 200px;" placeholder="Procurar"/>
-                    <?= form_dropdown('empresa_search', $empresas, '', 
-                            ['id' => 'empresa_search',
-                             'class' => 'form-control input-sm pull-left', 
-                             'style' => "margin-left: 5px;max-width: 200px;",
-                             'onchange'=>"pesquisar('cargo', 'ativo_search')"]) ?>
                     <div class="checkbox-inline">
                         <label style="margin-top: 3px;margin-bottom: 0;">
                             <input type="checkbox" id="ativo_search" onchange="pesquisar('cargo', 'ativo_search')" class="checkbox_lista input-table"  value="S" checked style="position: initial;float: left;"> Somente ativos
@@ -44,7 +39,6 @@
             <table style="min-width: 650px" class="table table-bordered table-hover" id="table-edit">
                 <tr style="background: #f5f5f5;">
                     <th style="width: 50px" class="text-center">#</th>
-                    <th>Empresa</th>
                     <th>Nome</th>
                     <th>Adicional</th>
                     <th style="width: 50px" class="text-center">Ativo</th>
@@ -56,7 +50,6 @@
                         ?>
                         <tr>
                             <td class="text-center"><?= $linha['ID']; ?></td>
-                            <td><?= $linha['NMEMPRESA'] ?></td>
                             <td><?= $linha['NOME'] ?></td>
                             <td><?= $linha['VLADICIONAL'] ?></td>
                             <td class="text-center"><?= ($linha['FLATIVO'] == 'S') ? 'Sim' : 'Não' ?></td>

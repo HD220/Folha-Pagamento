@@ -8,8 +8,6 @@ class Cargo extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('Cargo_model','cargo');
-        $this->load->model('Empresa_model','empresa');
-        $this->empresas = $this->empresa->get_dropdown();
     }
     
     public function index() {
@@ -22,8 +20,7 @@ class Cargo extends MY_Controller {
             "header" => $header,
             "page_title" => $this->page_title,
             "page_subtitle" => "",
-            "empresas" => $this->empresas,
-            "dados" => $this->cargo->listar($this->input->post('flativo'),$this->input->post('texto'),$this->input->post('idempresa'))
+            "dados" => $this->cargo->listar($this->input->post('flativo'),$this->input->post('texto'),$this->session->userdata('empresa')['ID'])
         );
         
         if($this->input->post('flativo')){
@@ -35,7 +32,7 @@ class Cargo extends MY_Controller {
     }
     
     public function novo() {
-        return $this->view('cargo/novo',array("empresas" => $this->empresas),FALSE);
+        return $this->view('cargo/novo',FALSE);
     }
     
     public function editar($id,$idempresa) {

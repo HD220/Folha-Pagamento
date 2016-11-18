@@ -3,7 +3,7 @@
 <div class="form-group">
     <label class="col-sm-3 control-label">Empresa:</label>
     <div class="col-sm-9">
-        <p class="form-control-static" ><?= $this->session->userdata('empresa')['NMEMPRESA'] ?></p>
+        <p class="form-control-static" ><?= $this->session->userdata('empresa')['NOMECURTO'] ?></p>
     </div>
 </div>
 <div class="form-group">

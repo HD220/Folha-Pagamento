@@ -30,7 +30,7 @@ class MY_Controller extends CI_Controller{
         if(!$this->session->userdata("usuario") && $method !== "login"){
             redirect("home");
         }else{
-            $this->$method(isset($var[0])?$var[0]:$var);
+            $this->$method(isset($var[0])?$var[0]:$var,isset($var[1])?$var[1]:$var);
         }
     }
     

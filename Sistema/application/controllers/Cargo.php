@@ -32,7 +32,7 @@ class Cargo extends MY_Controller {
     }
     
     public function novo() {
-        return $this->view('cargo/novo',FALSE);
+        return $this->view('cargo/novo',array(),FALSE);
     }
     
     public function editar($id,$idempresa) {

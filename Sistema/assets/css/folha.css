@@ -61,3 +61,8 @@ input[type="checkbox"].checkbox_lista{
 #table-content{
      overflow-x: auto;
 }
+
+.navbar-text{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

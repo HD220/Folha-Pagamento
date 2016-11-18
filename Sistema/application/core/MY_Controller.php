@@ -3,10 +3,11 @@ class MY_Controller extends CI_Controller{
     
     public function __construct() {
         parent::__construct();
+        $this->load->model('Empresa_model','empSessao');
     }
     
     function view($view, $vars = array(),$header= TRUE,$return = FALSE) {
-        
+        $vars['empresas'] = $this->empSessao->get_dropdown();
         $logado = ($this->session->userdata("usuario"))?"_logado":"";
                 
         ($return)?ob_start():null; 

@@ -1,7 +1,6 @@
 <table style="min-width: 650px" class="table table-bordered table-hover" id="table-edit">
     <tr style="background: #f5f5f5;">
         <th style="width: 50px" class="text-center">#</th>
-        <th>Empresa</th>
         <th>Nome</th>
         <th>Adicional</th>
         <th style="width: 50px" class="text-center">Ativo</th>
@@ -13,7 +12,6 @@
             ?>
             <tr>
                 <td class="text-center"><?= $linha['ID']; ?></td>
-                <td><?= $linha['NMEMPRESA'] ?></td>
                 <td><?= $linha['NOME'] ?></td>
                 <td><?= $linha['VLADICIONAL'] ?></td>
                 <td class="text-center"><?= ($linha['FLATIVO'] == 'S') ? 'Sim' : 'Não' ?></td>

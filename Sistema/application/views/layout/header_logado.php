@@ -47,11 +47,7 @@
                         <li><a href="/usuario">Usuários</a></li>
                         <li><a href="/empresa">Empresas</a></li>
                     </ul>
-					
                     <ul class="nav navbar-nav navbar-right">
-						<li><?=$this->session->userdata('empresa')['NOMECURTO']?> 
-							<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalEmpresa">Trocar</button>
-						</li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 Opções <span class="glyphicon glyphicon-cog"></span>
@@ -63,6 +59,10 @@
                             </ul>
                         </li>
                     </ul>
+                    <p class="navbar-text navbar-right">
+                        <?= $this->session->userdata('empresa')['NOMECURTO'] ?> 
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalEmpresa">Trocar</button>
+                    </p>
                 </div>
             </div>
         </nav>

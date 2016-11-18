@@ -7,7 +7,7 @@ function pesquisar(control, check) {
         ativo = "N";
     }
    
-    $.post("/" + control + "/listar", {flativo: ativo,texto:$("#text_search").val(),idempresa:$("#empresa_search").val()})
+    $.post("/" + control + "/listar", {flativo: ativo,texto:$("#text_search").val()})
             .done(function (data) {
                 $("#table-content").html(data);
             });

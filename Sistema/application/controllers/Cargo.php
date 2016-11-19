@@ -45,7 +45,7 @@ class Cargo extends MY_Controller {
                 
         $var = $this->input->post();
         unset($var['form']);
-        
+        $var['IDEMPRESA'] = $this->session->userdata('empresa')['ID'];
         if ($this->input->post('form') == "Salvar") {
             $this->cargo->update($var);
         }else {

@@ -3,10 +3,11 @@ class MY_Controller extends CI_Controller{
     
     public function __construct() {
         parent::__construct();
+        $this->load->model('Empresa_model','empSessao');
     }
     
     function view($view, $vars = array(),$header= TRUE,$return = FALSE) {
-        
+        $vars['empresas'] = $this->empSessao->get_dropdown();
         $logado = ($this->session->userdata("usuario"))?"_logado":"";
                 
         ($return)?ob_start():null; 
@@ -29,7 +30,7 @@ class MY_Controller extends CI_Controller{
         if(!$this->session->userdata("usuario") && $method !== "login"){
             redirect("home");
         }else{
-            $this->$method(isset($var[0])?$var[0]:$var);
+            $this->$method(isset($var[0])?$var[0]:$var,isset($var[1])?$var[1]:$var);
         }
     }
     

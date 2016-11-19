@@ -3,19 +3,23 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends MY_Controller {
-    
-    public $page_title = array("page_title"=>"Módulos");
+
+    public $page_title = "Módulos";
 
     public function index() {
-        $this->view('usuario/login',  $this->page_title);
+
+        $data = array(
+            "page_title" => $this->page_title,
+        );
+        $this->view('usuario/login', $data);
     }
-    
-    public function _remap($method = "",$var = ""){
-        if($this->session->userdata("usuario")){
+
+    public function _remap($method = "", $var = "") {
+        if ($this->session->userdata("usuario")) {
             redirect("dashboard");
-        }else{
+        } else {
             $this->$method();
         }
     }
-    
+
 }

@@ -54,10 +54,22 @@ table#table-edit td{
 
 input[type="checkbox"].checkbox_lista{
     width: 18px;
+    height: 18px;
     vertical-align: middle;
     margin: 0;
 }
 
 #table-content{
      overflow-x: auto;
+}
+.tab-pane{
+    padding-top: 15px;
+}
+
+.input-group-btn{
+    font-size: 14px;
+}
+
+.text-left {
+    text-align: left !important;
 }

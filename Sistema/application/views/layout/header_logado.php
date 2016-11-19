@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html >
     <head>
         <meta charset="utf-8">
@@ -43,6 +43,8 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
+                        <li><a href="/funcionario">Funcionários</a></li>
+                        <li><a href="/turno">Turnos</a></li>
                         <li><a href="/cargo">Cargos</a></li>
                         <li><a href="/usuario">Usuários</a></li>
                         <li><a href="/empresa">Empresas</a></li>
@@ -50,11 +52,12 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                Opções <span class="glyphicon glyphicon-cog"></span>
+                                <?= $this->session->userdata('empresa')['NOMECURTO'] ?> <span class="fa fa-building"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Configurações</a></li>
+                                <li><a href="#"  data-toggle="modal" data-target="#modalEmpresa">Trocar empresa</a></li>
                                 <li role="separator" class="divider"></li>
+                                <li><a href="#">Configurações</a></li>
                                 <li><a href="/usuario/logout">Logout</a></li>
                             </ul>
                         </li>

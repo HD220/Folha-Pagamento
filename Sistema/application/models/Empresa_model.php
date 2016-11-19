@@ -70,9 +70,7 @@ class Empresa_model extends CI_Model {
         $this->db->select("ID,NOME");
         $this->db->where("FLATIVO", "S");
         $rows = $this->db->get($this->table_name)->result();
-        $empresas = array(
-            "0" => "Sem empresa"
-        );
+        $empresas = array();
         foreach ($rows as $empresa) {
             $empresas[$empresa->ID] = $empresa->NOME;
         }

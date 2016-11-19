@@ -6,7 +6,7 @@
         <div class="panel-body">
 
             <?php
-            $attributes = array('class' => 'form', 'id' => 'login_form');
+            $attributes = array('class' => 'form-horizontal ', 'id' => 'login_form');
             echo form_open('/usuario/login', $attributes);
             ?>
             <fieldset>
@@ -20,6 +20,11 @@
                         'class' => 'form-control',
                         'autofocus' => true,
                         'placeholder' => "Usuário"
+                    ),
+					'empresa' => array(
+                        'id' => 'idempresa',
+                        'class' => 'form-control',
+                        'autofocus' => true
                     ),
                     'senha' => array(
                         'name' => 'senha',
@@ -35,13 +40,24 @@
                     )
                 );
                 ?>
-                <div class="form-group">
-                    <?= form_input($data['usuario']); ?>
-                </div>
-                <div class="form-group">
-                    <?= form_password($data['senha']); ?>
-                </div>
-
+				<div class="form-group">
+					<label class="col-sm-3 control-label" for="idempresa">Empresa:</label>
+					<div class="col-sm-9">
+						<?= form_dropdown('IDEMPRESA',$empresas,'',$data['empresa']) ?>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label" for="usuario">Usuário:</label>
+					<div class="col-sm-9">
+						<?= form_input($data['usuario']) ?>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label" for="senha">Senha:</label>
+					<div class="col-sm-9">
+						<?= form_password($data['senha']); ?>
+					</div>
+				</div>
                 <?php
                 foreach ($data as $key => $value) {
                     echo form_error($key, "<div class='alert alert-warning' role='alert'>", "</div>");

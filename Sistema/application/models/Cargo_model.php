@@ -87,13 +87,12 @@ class Cargo_model extends CI_Model {
         return $this->listar();
     }
 
-    public function get_dropdown() {
+    public function get_dropdown($idempresa) {
         $this->db->select("ID,NOME");
         $this->db->where("FLATIVO", "S");
+        $this->db->where("IDEMPRESA", $idempresa);
         $rows = $this->db->get($this->table_name)->result();
-        $cargos = array(
-            "0" => "Sem cargo"
-        );
+        $cargos = array();
         foreach ($rows as $cargo) {
             $cargos[$cargo->ID] = $cargo->NOME;
         }

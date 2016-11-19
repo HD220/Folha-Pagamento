@@ -9,6 +9,7 @@ class Usuario extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('Usuario_model', 'usuario');
+        $this->load->model('Empresa_model', 'empresa');
     }
 
     public function index() {
@@ -22,15 +23,14 @@ class Usuario extends MY_Controller {
             "header" => $header,
             "page_title" => $this->page_title,
             "page_subtitle" => "",
-            "usuarios" => $this->usuario->listar($this->input->post('flativo'),$this->input->post('texto'))
+            "usuarios" => $this->usuario->listar($this->input->post('flativo'), $this->input->post('texto'))
         );
 
-         if($this->input->post('flativo')){
-            $this->view('usuario/lista', $data,false);
-        }else{
+        if ($this->input->post('flativo')) {
+            $this->view('usuario/lista', $data, false);
+        } else {
             $this->view('usuario/listar', $data);
         }
-        
     }
 
     public function novo() {
@@ -79,6 +79,8 @@ class Usuario extends MY_Controller {
                 $this->usuario->adm_reset();
             } elseif ($usuario !== FALSE) {
                 #realiza login
+                $empresa = $this->empresa->ler($this->input->post('IDEMPRESA'));
+                $this->session->set_userdata("empresa", $empresa);
                 $this->session->set_userdata("usuario", $usuario);
                 redirect('/');
             } else {
@@ -87,6 +89,12 @@ class Usuario extends MY_Controller {
         }
 
         $this->view('usuario/login');
+    }
+
+    public function empresa() {
+        $empresa = $this->empresa->ler($this->input->post('IDEMPRESA'));
+        $this->session->set_userdata("empresa", $empresa);
+        redirect($this->input->post('url'));
     }
 
     public function logout() {

@@ -3,7 +3,6 @@
     <label class="col-sm-3 control-label">Código:</label>
     <div class="col-sm-9">
         <?= form_hidden('ID', $cargo['ID']) ?>
-        <?= form_hidden('IDEMPRESA', $cargo['IDEMPRESA']) ?>
         <p class="form-control-static" ><?= $cargo['ID'] ?>
             <?php
             $check = array(

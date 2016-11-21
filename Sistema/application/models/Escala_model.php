@@ -4,16 +4,33 @@ class Escala_model extends CI_Model {
 
     protected $table_name = "tbescalas";
 
-    public function listar() {
-        $this->db->where("FLATIVO", 'S');
-        $result = $this->db->get($this->table_name);
-        return $result->result_array();
+    public function listar($idempresa,$mes = NULL,$ano = NULL) {
+        
+        $mes = ($mes)?$mes:date("m");
+        $ano = ($ano)?$ano:date("Y");
+        
+        #Pega o numero de dias do mes passado ou da data atual
+        $nudias = cal_days_in_month(CAL_GREGORIAN, $mes, $ano);
+        
+        $dias_escala = array();
+        for($dia = 1;$dia <= $nudias;$dia++){
+            //echo ($ano."-".$mes."-".$dia)."</br>";
+            $this->db->where("DATA",$ano."-".$mes."-".$dia);
+            $this->db->where("IDEMPRESA",$idempresa);
+            $escalas = $this->db->get($this->table_name);
+            $dias_escala[$dia."/".$mes."/".$ano] = $escalas->result_array();
+        }
+        
+        return $dias_escala;
+        
     }
     
-    public function ler($id = null) {
-        $this->db->where("ID", $id);
-        $result = $this->db->get($this->table_name);
-        return $result->row_array();
+    public function ler($idempresa,$data) {
+        //echo ($ano."-".$mes."-".$dia)."</br>";
+            $this->db->where("DATA",$data);
+            $this->db->where("IDEMPRESA",$idempresa);
+            $escalas = $this->db->get($this->table_name);
+            return $escalas->result_array();
     }
 
     public function save_list($list_array = array()) {

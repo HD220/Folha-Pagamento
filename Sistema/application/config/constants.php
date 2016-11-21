@@ -83,3 +83,28 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+defined("LAYOUTCALENDARIO")    OR define("LAYOUTCALENDARIO", 
+        '{table_open}<table style="min-width: 650px" class="table table-bordered table-hover">{/table_open}
+        {heading_row_start}<tr>{/heading_row_start}
+        {heading_previous_cell}<th><a href="{previous_url}">&lt;&lt;</a></th>{/heading_previous_cell}
+        {heading_title_cell}<th colspan="{colspan}">{heading}</th>{/heading_title_cell}
+        {heading_next_cell}<th><a href="{next_url}">&gt;&gt;</a></th>{/heading_next_cell}
+        {heading_row_end}</tr>{/heading_row_end}
+        {week_row_start}<tr>{/week_row_start}
+        {week_day_cell}<th class="text-center" style="width: 14.28%;">{week_day}</th>{/week_day_cell}
+        {week_row_end}</tr>{/week_row_end}
+        {cal_row_start}<tr>{/cal_row_start}
+        {cal_cell_start}<td data-toggle="modal" data-target="#modelEscala" onclick="'."editar('escala','{year_month_day}','model')".'" class="text-center" style="height: 90px;vertical-align: middle;font-size:24px;">{/cal_cell_start}
+        {cal_cell_start_today}<td data-toggle="modal" data-target="#modelEscala" onclick="'."editar('escala','{year_month_day}','model')".'" class="text-center" style="height: 90px;vertical-align: middle;font-size:24px;">{/cal_cell_start_today}
+        {cal_cell_start_other}<td  class="other-month text-center"  style="height: 90px;vertical-align: middle;font-size:24px;">{/cal_cell_start_other}
+        {cal_cell_content}<a href="{content}">{day}</a>{/cal_cell_content}
+        {cal_cell_content_today}<div class="highlight"><a href="{content}">{day}</a></div>{/cal_cell_content_today}
+        {cal_cell_no_content}{day}{/cal_cell_no_content}
+        {cal_cell_no_content_today}<div class="highlight">{day}</div>{/cal_cell_no_content_today}
+        {cal_cell_blank}&nbsp;{/cal_cell_blank}
+        {cal_cell_other}{day}{/cal_cel_other}
+        {cal_cell_end}</td>{/cal_cell_end}
+        {cal_cell_end_today}</td>{/cal_cell_end_today}
+        {cal_cell_end_other}</td>{/cal_cell_end_other}
+        {cal_row_end}</tr>{/cal_row_end}
+        {table_close}</table>{/table_close}');

@@ -1,53 +1,69 @@
 <?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Escala extends MY_Controller {
 
     public $page_title = "Escalas";
+    public $empresas = array();
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('Escala_model','escala');
+        $this->load->model('Escala_model', 'escala');
     }
-    
+
     public function index() {
         $this->listar();
     }
-    
-    public function listar($header = false) {
 
-        $data = array(
+    public function listar($header = false) {
+        
+        $this->load->library('calendar',[
+            'template' => LAYOUTCALENDARIO,
+            'month_type'   => 'long',
+            'day_type'     => 'long',
+            'show_other_days' => TRUE
+            ]);
+
+
+        $data = [
             "header" => $header,
             "page_title" => $this->page_title,
             "page_subtitle" => "",
-            "dados" => $this->escala->listar()
-        );
+            "calendario" => $this->calendar->generate(date("Y"), date("m")),
+            "dados" => $this->escala->listar($this->session->userdata('empresa')['ID'], $this->input->post("mes"), $this->input->post("ano"))
+        ];
 
-        $this->view('escala/listar', $data);
+
+        if ($this->input->post('flativo')) {
+            $this->view('escala/lista', $data, FALSE);
+        } else {
+            $this->view('escala/listar', $data);
+        }
     }
-    
-    public function novo() {
-        return $this->view('escala/novo',array(),FALSE,TRUE);
+
+    public function novo($data = NULL) {
+
+        return $this->view('escala/novo', array("data" => $data), FALSE);
     }
-    
-    public function editar($id) {
-        $campos = $this->escala->ler($id);
-        return $this->view('escala/editar',$campos,FALSE,TRUE);
-        
+
+    public function editar($data) {
+        $campos = ['escala' => $this->escala->ler($this->session->userdata('empresa')['ID'],$data)];
+        return $this->view('escala/editar', $campos, FALSE);
     }
 
     public function salvar() {
-                
-        if(is_array($this->input->post('novo'))){
-            $this->escala->save($this->input->post('novo'));
-        }
-        
-        if (is_array($this->input->post('alterar'))) {
-            $this->escala->update($this->input->post('alterar'));
+
+        $var = $this->input->post();
+        unset($var['form']);
+        $var['IDEMPRESA'] = $this->session->userdata('empresa')['ID'];
+        if ($this->input->post('form') == "Salvar") {
+            $this->escala->update($var);
         } else {
-            $this->session->set_flashdata("form_error", "<div class='alert alert-warning' role='alert'>Não foi possivel salvar</div>");
+            $this->escala->save($var);
         }
-       
+        $this->session->set_flashdata("error", "<div class='alert alert-success' role='alert'>Registro salvo com sucesso.</div>");
+        redirect('cargo');
     }
-    
 
 }

@@ -14,7 +14,7 @@ function pesquisar(control, check) {
 }
 
 function editar(control, id, modal) {
-   
+   alert("Clicou");
     $.get(control + "/editar/" + id).done(function (data) {
         $("#" + modal).html(data);
     });

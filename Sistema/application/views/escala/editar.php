@@ -1,43 +1,32 @@
-<?= form_open("/cargo/salvar", ['class' => 'form-horizontal']) ?>
-<div class="form-group">
-    <label class="col-sm-3 control-label">Código:</label>
-    <div class="col-sm-9">
-        <?= form_hidden('ID', $cargo['ID']) ?>
-        <p class="form-control-static" ><?= $cargo['ID'] ?>
-            <?php
-            $check = array(
-                'class' => 'checkbox_lista input-table',
-                'name' => "FLATIVO",
-                'value' => 'S',
-                'checked' => ($cargo['FLATIVO'] == 'S') ? true : false
-                    )
-            ?>
-            <label for="flativo" class="pull-right"><?= form_checkbox($check) ?> Ativo</label>
-        </p>
-    </div>
-</div>
+<?= form_open("/escala/salvar", ['class' => 'form-horizontal']) ?>
 <div class="form-group">
     <label class="col-sm-3 control-label">Empresa:</label>
     <div class="col-sm-9">
-        <p class="form-control-static" ><?= $cargo['NMEMPRESA'] ?></p>
+        <p class="form-control-static" ><?= $this->session->userdata('empresa')['NOMECURTO'] ?></p>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label" for="nome">Nome:</label>
+    <label class="col-sm-3 control-label">Data Folga:</label>
     <div class="col-sm-9">
-        <?= form_input('NOME', $cargo['NOME'], ['class' => 'form-control']) ?>
+        <?=  form_date("DATA",$escala['DATA'],['class' => 'form-control','disabled'=>TRUE])?>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label" for="descricao">Descrição:</label>
+    <label class="col-sm-3 control-label" for="nome">Folgante:</label>
     <div class="col-sm-9">
-        <?= form_textarea('DESCRICAO', $cargo['DESCRICAO'], ['class' => 'form-control']) ?>
+        <?= form_dropdown('IDFOLGANTE', $funcionarios , $escala['IDFOLGANTE'], ['class' => 'form-control','disabled'=>TRUE]) ?>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label" for="vladicional">Valor do adicional:</label>
+    <label class="col-sm-3 control-label" for="usuario">Folguista:</label>
     <div class="col-sm-9">
-        <?= form_number('VLADICIONAL', $cargo['VLADICIONAL'], ['class' => 'form-control']) ?>
+        <?= form_dropdown('IDFOLGUISTA',$funcionarios, $escala['IDFOLGUISTA'], ['class' => 'form-control']) ?>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label" for="usuario">Observação:</label>
+    <div class="col-sm-9">
+        <?= form_textarea('OBSERVACAO', $escala['OBSERVACAO'], ['class' => 'form-control']) ?>
     </div>
 </div>
 <div class="row">

@@ -1,4 +1,4 @@
-<?= form_open("/cargo/salvar", ['class' => 'form-horizontal']) ?>
+<?= form_open("/escala/salvar", ['class' => 'form-horizontal']) ?>
 
 <div class="form-group">
     <label class="col-sm-3 control-label">Empresa:</label>
@@ -7,21 +7,27 @@
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label" for="nome">Nome:</label>
+    <label class="col-sm-3 control-label">Data Folga:</label>
     <div class="col-sm-9">
-        <?= form_input('NOME', '', ['class' => 'form-control']) ?>
+        <?= form_date('DATA', $data, ['class' => 'form-control']) ?>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label" for="usuario">Descrição:</label>
+    <label class="col-sm-3 control-label" for="nome">Folgante:</label>
     <div class="col-sm-9">
-        <?= form_textarea('DESCRICAO', '', ['class' => 'form-control']) ?>
+        <?= form_dropdown('IDFOLGANTE', $funcionarios , '', ['class' => 'form-control']) ?>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label" for="usuario">Valor do adicional:</label>
+    <label class="col-sm-3 control-label" for="usuario">Folguista:</label>
     <div class="col-sm-9">
-        <?= form_number('VLADICIONAL', '', ['class' => 'form-control']) ?>
+        <?= form_dropdown('IDFOLGUISTA',$funcionarios, '', ['class' => 'form-control']) ?>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label" for="usuario">Observação:</label>
+    <div class="col-sm-9">
+        <?= form_textarea('OBSERVACAO', '', ['class' => 'form-control']) ?>
     </div>
 </div>
 <div class="row">

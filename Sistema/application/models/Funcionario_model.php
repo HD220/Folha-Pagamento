@@ -140,12 +140,14 @@ class Funcionario_model extends CI_Model {
         return $this->listar();
     }
 
-    public function get_dropdown() {
-        $this->db->select("ID,NOME");
+    public function get_dropdown($idempresa) {
+        $this->db->where("DTDEMISSAO", '0000-00-00');
+        $this->db->where('IDEMPRESA',$idempresa);
+        $this->db->select("ID,APELIDO");
         $rows = $this->db->get($this->table_name)->result();
         $funcionarios = array();
         foreach ($rows as $funcionario) {
-            $funcionarios[$funcionario->ID] = $funcionario->NOME;
+            $funcionarios[$funcionario->ID] = $funcionario->APELIDO;
         }
         return $funcionarios;
     }

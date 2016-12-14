@@ -35,7 +35,7 @@
 <div class="form-group">
     <label class="col-sm-4 control-label">Nome:</label>
     <div class="col-sm-8">
-        <?= form_input('NOME', $turno['NOME'], ['class' => 'form-control']) ?>
+        <?= form_input('NOME', $turno['NOME'], ['class' => 'form-control',"required" => TRUE]) ?>
     </div>
 </div>
 <div class="form-group">

@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/payroll/assets/js/new_register.js</file>
-            <file>file:/C:/xampp/htdocs/payroll/application/views/usuario/index.php</file>
+            <file>file:/C:/xampp/htdocs/Payroll/Sistema/application/views/escala/listar.php</file>
+            <file>file:/C:/xampp/htdocs/Payroll/Sistema/application/models/Escala_model.php</file>
+            <file>file:/C:/xampp/htdocs/Payroll/Sistema/assets/js/functions.js</file>
+            <file>file:/C:/xampp/htdocs/Payroll/Sistema/application/views/escala/escala.php</file>
+            <file>file:/C:/xampp/htdocs/Payroll/Sistema/application/controllers/Escala.php</file>
         </group>
     </open-files>
 </project-private>

@@ -18,14 +18,19 @@
         <link href="/assets/sb/css/sb-admin-2.min.css" rel="stylesheet">
 
         <link rel="stylesheet" href="/assets/css/folha.css">
-
+        
+        
+        
         <!-- Custom Fonts -->
         <link href="/assets/sb/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="/assets/js/jquery.min.js"></script>
+        <!--Mask JS-->
+        <script src="/assets/js/jquery.mask.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="/assets/js/bootstrap.min.js"></script>
 
+        <script src="/assets/js/functions.js"></script>
 
     </head>
     <body>
@@ -43,6 +48,7 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
+                        <li><a href="/escala">Folgas</a></li>
                         <li><a href="/funcionario">Funcionários</a></li>
                         <li><a href="/turno">Turnos</a></li>
                         <li><a href="/cargo">Cargos</a></li>

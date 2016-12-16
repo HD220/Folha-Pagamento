@@ -41,15 +41,10 @@ CREATE TABLE IF NOT EXISTS `tbcargos` (
   `VLADICIONAL` decimal(10,2) DEFAULT NULL,
   `FLATIVO` char(1) NOT NULL DEFAULT 'S',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela payroll.tbcargos: ~4 rows (aproximadamente)
+-- Copiando dados para a tabela payroll.tbcargos: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbcargos` DISABLE KEYS */;
-INSERT IGNORE INTO `tbcargos` (`ID`, `IDEMPRESA`, `NOME`, `DESCRICAO`, `VLADICIONAL`, `FLATIVO`) VALUES
-	(1, 1, 'teste', 'teste', 50.00, 'S'),
-	(2, 1, 'Programador', '', 0.00, 'N'),
-	(3, 2, 'teste emp 2', '', 0.00, 'S'),
-	(5, 1, 'teste', 'teste lanchonet', 5000.00, 'S');
 /*!40000 ALTER TABLE `tbcargos` ENABLE KEYS */;
 
 
@@ -91,36 +86,26 @@ CREATE TABLE IF NOT EXISTS `tbempresas` (
   `NOMECURTO` varchar(50) NOT NULL,
   `FLATIVO` char(1) NOT NULL DEFAULT 'S',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela payroll.tbempresas: ~10 rows (aproximadamente)
+-- Copiando dados para a tabela payroll.tbempresas: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbempresas` DISABLE KEYS */;
 INSERT IGNORE INTO `tbempresas` (`ID`, `NOME`, `NOMECURTO`, `FLATIVO`) VALUES
-	(1, 'RECANTO LANCHONETE LTDA.', 'LANCHONETE', 'S'),
-	(2, 'RECANTO POSTO LTDA.', 'POSTO', 'S'),
-	(3, 'tete', 'tete', 'N'),
-	(4, 'tete', 'tete', 'N'),
-	(5, 'tr', 'te', 'N'),
-	(6, 'teste', 'te', 'N'),
-	(7, 't', 'r', 'N'),
-	(8, 'kakaka', 'kakak', 'N'),
-	(9, 'akkaka', 'akakka', 'N'),
-	(10, 'zzzzzzzz', 'zzzz', 'N');
+	(1, 'RECANTO LANCHONETE LTDA.', 'LANCHONETE', 'S');
 /*!40000 ALTER TABLE `tbempresas` ENABLE KEYS */;
 
 
 -- Copiando estrutura para tabela payroll.tbescalas
 DROP TABLE IF EXISTS `tbescalas`;
 CREATE TABLE IF NOT EXISTS `tbescalas` (
+  `IDEMPRESA` int(11) NOT NULL,
   `IDFOLGANTE` int(11) NOT NULL,
   `IDFOLGUISTA` int(11) NOT NULL,
   `DATA` date NOT NULL,
   `OBSERVACAO` varchar(200) DEFAULT NULL,
-  `HORAUM` time NOT NULL,
-  `HORADOIS` time NOT NULL,
-  `HORATRES` time NOT NULL,
-  `HORAQUATRO` time NOT NULL,
-  PRIMARY KEY (`DATA`,`IDFOLGUISTA`,`IDFOLGANTE`)
+  `FLDIASEMANA` char(1) DEFAULT NULL,
+  `FLSEMANAMES` char(1) DEFAULT NULL,
+  PRIMARY KEY (`DATA`,`IDFOLGANTE`,`IDEMPRESA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Copiando dados para a tabela payroll.tbescalas: ~0 rows (aproximadamente)
@@ -207,12 +192,10 @@ CREATE TABLE IF NOT EXISTS `tbfuncionarios` (
   `NUTELEFONE` varchar(11) NOT NULL,
   `DSEMAIL` varchar(200) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Copiando dados para a tabela payroll.tbfuncionarios: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbfuncionarios` DISABLE KEYS */;
-INSERT IGNORE INTO `tbfuncionarios` (`ID`, `IDEMPRESA`, `NOME`, `APELIDO`, `IDCARGO`, `IDTURNO`, `NURG`, `NUCPF`, `USUARIOPANTERA`, `SENHAPANTERA`, `VLADICIONAL`, `FLFOLGUISTA`, `FLPREFFOLGA`, `FLCNH`, `FLVALETRANSPORTE`, `NUDEPENDENTE`, `DTADMISSAO`, `DTDEMISSAO`, `DTREGISTRO`, `DTNASCIMENTO`, `DTCARTSAUDE`, `DSENDERECO`, `NUCELULAR`, `NUTELEFONE`, `DSEMAIL`) VALUES
-	(1, 1, 'Nicolas Fraga Faust', '220', 5, 1, '909', '0909', 'akjdoaklj', 'paksldkaml', 0.00, 'S', 'S|N|N|S|N|S|S', 'S', 'N', 0, '2016-11-19', '0000-00-00', '2016-11-19', '2016-11-19', '2016-11-19', '09098|098|098|098|098|09|SC', '9890898', '09809809', 'nicolas.faust@hormail.com');
 /*!40000 ALTER TABLE `tbfuncionarios` ENABLE KEYS */;
 
 
@@ -303,19 +286,17 @@ CREATE TABLE IF NOT EXISTS `tbturnos` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `IDEMPRESA` int(11) NOT NULL DEFAULT '0',
   `NOME` varchar(50) NOT NULL,
-  `HORAUM` time NOT NULL,
-  `HORADOIS` time NOT NULL,
-  `HORATRES` time NOT NULL,
-  `HORAQUATRO` time NOT NULL,
+  `HORAUM` time DEFAULT NULL,
+  `HORADOIS` time DEFAULT NULL,
+  `HORATRES` time DEFAULT NULL,
+  `HORAQUATRO` time DEFAULT NULL,
   `FLPICO` char(1) NOT NULL DEFAULT 'N',
   `FLATIVO` char(1) NOT NULL DEFAULT 'S',
   PRIMARY KEY (`ID`,`IDEMPRESA`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela payroll.tbturnos: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela payroll.tbturnos: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbturnos` DISABLE KEYS */;
-INSERT IGNORE INTO `tbturnos` (`ID`, `IDEMPRESA`, `NOME`, `HORAUM`, `HORADOIS`, `HORATRES`, `HORAQUATRO`, `FLPICO`, `FLATIVO`) VALUES
-	(1, 1, 'Manha', '08:00:00', '12:00:00', '13:30:00', '18:18:00', 'N', 'S');
 /*!40000 ALTER TABLE `tbturnos` ENABLE KEYS */;
 
 
@@ -334,10 +315,7 @@ CREATE TABLE IF NOT EXISTS `tbusuarios` (
 -- Copiando dados para a tabela payroll.tbusuarios: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbusuarios` DISABLE KEYS */;
 INSERT IGNORE INTO `tbusuarios` (`ID`, `NOME`, `USUARIO`, `SENHA`, `NIVEL`, `FLATIVO`) VALUES
-	(1, 'Administrador', 'FOLHAADM', 'cc73e901297f4c92a801a8be73fd982b', 1, 'S'),
-	(2, 'Nicolas Fraga Faust', 'NICOLASS2', 'c4ca4238a0b923820dcc509a6f75849b', 1, 'N'),
-	(3, 'Teste', 'NICOLAS', 'c4ca4238a0b923820dcc509a6f75849b', 1, 'N'),
-	(4, 'yaasd', 'NICOLA', 'c4ca4238a0b923820dcc509a6f75849b', 2, 'N');
+	(1, 'Administrador', 'FOLHAADM', 'cc73e901297f4c92a801a8be73fd982b', 1, 'S');
 /*!40000 ALTER TABLE `tbusuarios` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

@@ -19,9 +19,10 @@
                         'value' => set_value('usuario'),
                         'class' => 'form-control',
                         'autofocus' => true,
-                        'placeholder' => "Usuário"
+                        'placeholder' => "Usuário",
+                        "required" => TRUE
                     ),
-					'empresa' => array(
+			'empresa' => array(
                         'id' => 'idempresa',
                         'class' => 'form-control',
                         'autofocus' => true
@@ -32,7 +33,8 @@
                         'maxlength' => '100',
                         'value' => set_value('senha'),
                         'class' => 'form-control',
-                        'placeholder' => "Senha"
+                        'placeholder' => "Senha",
+                        "required" => TRUE
                     ),
                     "entrar" => array(
                         'value' => 'Entrar',

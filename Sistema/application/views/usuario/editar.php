@@ -19,7 +19,7 @@
 <div class="form-group">
     <label class="col-sm-3 control-label" for="nome">Nome:</label>
     <div class="col-sm-9">
-        <?= form_input('NOME', $usuario['NOME'], ['class' => 'form-control']) ?>
+        <?= form_input('NOME', $usuario['NOME'], ['class' => 'form-control',"required" => TRUE]) ?>
     </div>
 </div>
 <div class="form-group">

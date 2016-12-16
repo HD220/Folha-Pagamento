@@ -511,3 +511,10 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+/*
+ * -----------------------------------------------------------------------
+ * Set the default local zone from brasil
+ * -----------------------------------------------------------------------
+ */
+date_default_timezone_set("America/Sao_Paulo");
